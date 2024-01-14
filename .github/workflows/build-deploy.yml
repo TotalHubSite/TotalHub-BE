@@ -52,7 +52,7 @@ jobs:
         port: 22
         key: ${{ secrets.EC2_PRIVATE_KEY }}
         script: |
-          echo ${{ secrets.DOCKERHUB_PASSWORD }} | sudo docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+          # echo ${{ secrets.DOCKERHUB_PASSWORD }} | sudo docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
           export SPRING_ACTIVE_PROFILE=${{ secrets.SPRING_ACTIVE_PROFILE }}
           export SPRING_DATABASE_USERNAME=${{ secrets.SPRING_DATABASE_USERNAME }}
           export SPRING_DATABASE_PASSWORD=${{ secrets.SPRING_DATABASE_PASSWORD }}
