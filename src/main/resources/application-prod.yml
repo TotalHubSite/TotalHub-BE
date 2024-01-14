@@ -1,9 +1,9 @@
 spring:
   application:
-    name: total-hub-site-be
+    name: totalhubsite
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://total-hub-site-mysql.ct2aoqa2kuhu.ap-northeast-2.rds.amazonaws.com:3306/totalhub
+    url: jdbc:mysql://total-hub-site-mysql.ct2aoqa2kuhu.ap-northeast-2.rds.amazonaws.com:3306/totalhubsite
     username: ${SPRING_DATABASE_USERNAME}
     password: ${SPRING_DATABASE_PASSWORD}
   h2:
