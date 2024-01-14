@@ -37,7 +37,7 @@ jobs:
         context: .
         dockerfile: Dockerfile
         push: true
-        tags: ${{ secrets.DOCKERHUB_REPOSITORY }}/junmo-website-backend:latest
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPOSITORY }}:backend-latest
         
   deploy: 
     needs: build
