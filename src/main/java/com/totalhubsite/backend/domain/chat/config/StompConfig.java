@@ -17,6 +17,7 @@ public class StompConfig implements WebSocketMessageBrokerConfigurer {
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/ws") // ws 주소로 웹소켓 연결
             .setAllowedOrigins("http://localhost:3000") // CORS 설정
+            .setAllowedOrigins("http://15.165.144.39") // CORS 설정
             .withSockJS(); // SockJS를 사용
     }
 
