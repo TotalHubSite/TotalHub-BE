@@ -1,6 +1,5 @@
 package com.totalhubsite.backend.domain.chat.entity;
 
-import com.totalhubsite.backend.domain.chat.entity.ChatRoomType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
