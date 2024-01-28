@@ -1,0 +1,18 @@
+version: '3'
+services:
+  mysql-server:
+    container_name: total-hub-site-mysql
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    ports:
+      - "3310:3306"
+  rabbitmq:
+    container_name: total-hub-site-rabbitmq
+    build:
+      context: ./chat
+      dockerfile: Dockerfile
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+      - "61613:61613"
