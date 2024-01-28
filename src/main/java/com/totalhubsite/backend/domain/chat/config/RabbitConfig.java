@@ -45,7 +45,8 @@ public class RabbitConfig implements RabbitListenerConfigurer {
     @Bean
     public ConnectionFactory connectionFactory() {
         CachingConnectionFactory factory = new CachingConnectionFactory();
-        factory.setHost("localhost");
+        factory.setHost("docker-compose_rabbitmq_1");
+        // factory.setHost("localhost");
         factory.setUsername("guest");
         factory.setPassword("guest");
         return factory;
