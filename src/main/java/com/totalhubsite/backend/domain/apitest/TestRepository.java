@@ -1,4 +1,4 @@
-package com.totalhubsite.backend.apitest;
+package com.totalhubsite.backend.domain.apitest;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

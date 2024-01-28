@@ -1,4 +1,4 @@
-package com.totalhubsite.backend.apitest;
+package com.totalhubsite.backend.domain.apitest;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

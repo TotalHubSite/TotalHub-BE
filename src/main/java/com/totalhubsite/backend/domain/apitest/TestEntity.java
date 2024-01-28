@@ -1,4 +1,4 @@
-package com.totalhubsite.backend.apitest;
+package com.totalhubsite.backend.domain.apitest;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
