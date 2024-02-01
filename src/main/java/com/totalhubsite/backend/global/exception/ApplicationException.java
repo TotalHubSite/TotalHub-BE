@@ -1,8 +1,6 @@
 package com.totalhubsite.backend.global.exception;
 
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
 public class ApplicationException extends RuntimeException{
