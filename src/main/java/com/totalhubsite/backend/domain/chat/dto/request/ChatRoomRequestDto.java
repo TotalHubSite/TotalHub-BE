@@ -1,7 +1,7 @@
-package com.totalhubsite.backend.domain.chat.dto;
+package com.totalhubsite.backend.domain.chat.dto.request;
 
 import com.totalhubsite.backend.domain.chat.entity.ChatRoom;
-import com.totalhubsite.backend.domain.chat.entity.ChatRoomType;
+import com.totalhubsite.backend.domain.chat.entity.type.ChatRoomType;
 import lombok.Builder;
 
 public record ChatRoomRequestDto(
