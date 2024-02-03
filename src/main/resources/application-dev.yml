@@ -12,3 +12,8 @@ spring:
       ddl-auto: create-drop
     show-sql: true
     defer-datasource-initialization: true
+    properties:
+      hibernate.format_sql: true
+  sql.init.mode: always
+
+  host_profile: localhost

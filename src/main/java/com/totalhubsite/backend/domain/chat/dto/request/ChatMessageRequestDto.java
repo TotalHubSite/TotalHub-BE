@@ -1,4 +1,4 @@
-package com.totalhubsite.backend.domain.chat.dto;
+package com.totalhubsite.backend.domain.chat.dto.request;
 
 import lombok.Builder;
 

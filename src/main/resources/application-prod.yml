@@ -16,3 +16,6 @@ spring:
     generate-ddl: true
     defer-datasource-initialization: true
 
+  host_profile: docker-compose_rabbitmq_1
+
+

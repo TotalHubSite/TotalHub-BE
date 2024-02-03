@@ -14,6 +14,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.listener.RabbitListenerEndpointRegistrar;
 import org.springframework.amqp.rabbit.listener.RabbitListenerEndpointRegistry;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.converter.MappingJackson2MessageConverter;
@@ -22,6 +23,9 @@ import org.springframework.messaging.handler.annotation.support.DefaultMessageHa
 @Configuration
 @EnableRabbit // RabbitMQ를 사용하기 위해 필요한 설정을 활성화
 public class RabbitConfig implements RabbitListenerConfigurer {
+
+    @Value("${spring.host_profile}")
+    private String hostProfile;
 
     // AmqpAdmin 빈은 RabbitMQ의 관리 작업을 수행하며, RabbitTemplate 빈은 메시지를 전송하는데 사용된다.
 
@@ -45,8 +49,7 @@ public class RabbitConfig implements RabbitListenerConfigurer {
     @Bean
     public ConnectionFactory connectionFactory() {
         CachingConnectionFactory factory = new CachingConnectionFactory();
-        factory.setHost("docker-compose_rabbitmq_1");
-        // factory.setHost("localhost");
+        factory.setHost(hostProfile);
         factory.setUsername("guest");
         factory.setPassword("guest");
         return factory;
