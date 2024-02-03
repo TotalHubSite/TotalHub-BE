@@ -5,9 +5,10 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 public enum ErrorCode {
-    ;
 
-    // Test
+
+    // Board
+    BOARD_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 게시판입니다.");
 
     private final HttpStatus httpStatus;
     private final String message;
