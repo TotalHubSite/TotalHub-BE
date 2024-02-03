@@ -4,7 +4,6 @@ import com.totalhubsite.backend.domain.board.dto.request.BoardRequestDto;
 import com.totalhubsite.backend.domain.board.dto.response.BoardDetailResponseDto;
 import com.totalhubsite.backend.domain.board.dto.response.BoardListResponseDto;
 import com.totalhubsite.backend.domain.board.entity.Board;
-import com.totalhubsite.backend.domain.board.exception.BoardNotFoundException;
 import com.totalhubsite.backend.domain.board.repository.BoardRepository;
 import java.nio.BufferOverflowException;
 import lombok.Getter;

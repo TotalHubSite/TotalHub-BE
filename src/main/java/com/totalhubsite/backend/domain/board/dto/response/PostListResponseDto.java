@@ -1,8 +1,6 @@
 package com.totalhubsite.backend.domain.board.dto.response;
 
-import com.totalhubsite.backend.domain.board.entity.Comment;
 import com.totalhubsite.backend.domain.board.entity.Post;
-import java.util.List;
 import lombok.Builder;
 
 public record PostListResponseDto(

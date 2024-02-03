@@ -4,8 +4,6 @@ import com.totalhubsite.backend.domain.board.dto.request.BoardRequestDto;
 import com.totalhubsite.backend.domain.board.dto.response.BoardDetailResponseDto;
 import com.totalhubsite.backend.domain.board.dto.response.BoardListResponseDto;
 import com.totalhubsite.backend.domain.board.service.BoardService;
-import java.util.List;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
