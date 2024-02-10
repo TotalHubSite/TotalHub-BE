@@ -43,7 +43,9 @@ public class JwtKey {
         if (key == null) {
             return null;
         }
-        return Keys.hmacShaKeyFor(key.getBytes(StandardCharsets.UTF_8));
+//        return Keys.hmacShaKeyFor(key.getBytes(StandardCharsets.UTF_8));
+        byte[] decodedKey = Decoders.BASE64.decode(key);
+        return Keys.hmacShaKeyFor(decodedKey);
     }
 
 }
