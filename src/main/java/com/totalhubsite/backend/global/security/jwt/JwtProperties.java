@@ -1,10 +1,18 @@
 package com.totalhubsite.backend.global.security.jwt;
 
-// 토큰 속성 설정
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
+
+@Component
+@ConfigurationProperties(prefix = "spring.security.jwt-key")
+@Getter
+@Setter
 public class JwtProperties {
 
-    public static final int ACCESS_TOKEN_EXPIRATION_TIME = 1000 * 60 * 60 * 40; // 40시간
-
-//    public static final int REFRESH_TOKEN_EXPIRATION_TIME = 1000 * 60 * 60 * 40; // 리플래쉬 토큰 설정은 추후에
+    private String jwtSecretKey1;
+    private String jwtSecretKey2;
+    private String jwtSecretKey3;
 
 }

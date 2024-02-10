@@ -107,11 +107,11 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     private String getAuthenticationErrorMessage(AuthenticationException exception) {
         if (exception instanceof BadCredentialsException) {
-            return exception.getMessage() + "이메일 또는 비밀번호 에러";
+            return "이메일 또는 비밀번호 에러";
         } else if (exception instanceof UsernameNotFoundException) {
-            return exception.getMessage() + "존재하지 않는 유저";
+            return "존재하지 않는 유저";
         } else {
-            return exception.getMessage() + "인증 실패";
+            return "인증 실패";
         }
     }
 

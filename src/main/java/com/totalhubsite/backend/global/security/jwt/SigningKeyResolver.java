@@ -4,13 +4,18 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwsHeader;
 import io.jsonwebtoken.SigningKeyResolverAdapter;
 import java.security.Key;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
-// JWT 키를 여러개 사용시 지원하는 인터페이스 -
+// JWT 키를 여러개 사용시 지원하는 인터페이스
 // jwt 토큰의 헤더와 바디의 클레임들을 받아 처리
 // 여기서는 헤더의 key id를 통해서 해당하는 키값을 반환하여, 검증에 사용할 수 있게한다.
+
+@Component
+@RequiredArgsConstructor
 public class SigningKeyResolver extends SigningKeyResolverAdapter {
 
-    public static SigningKeyResolver instance = new SigningKeyResolver();
+    private final JwtKey jwtKey;
 
     @Override
     public Key resolveSigningKey(JwsHeader jwsHeader, Claims claims) {
@@ -18,7 +23,7 @@ public class SigningKeyResolver extends SigningKeyResolverAdapter {
         if (kid == null) {
             return null;
         }
-        return JwtKey.getKey(kid);
+        return jwtKey.getKey(kid);
     }
 
 }

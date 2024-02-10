@@ -7,6 +7,7 @@ import java.util.Arrays;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -14,6 +15,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 
 @Configuration
@@ -61,9 +63,9 @@ public class SpringSecurityConfig {
         // authorization  권한 설정
         httpSecurity.authorizeHttpRequests(auth -> auth
 //            .requestMatchers("/v1/tests").permitAll()
-            .requestMatchers("/v1/boards").permitAll()
-            .requestMatchers("/v1/posts").permitAll()
-            .requestMatchers("/v1/comments").permitAll()
+            .requestMatchers(new AntPathRequestMatcher("/v1/boards/**", HttpMethod.GET.name())).permitAll()
+            .requestMatchers(new AntPathRequestMatcher("/v1/posts/**", HttpMethod.GET.name())).permitAll()
+            .requestMatchers(new AntPathRequestMatcher("/v1/comments/**", HttpMethod.GET.name())).permitAll()
             .requestMatchers("/v1/signup").permitAll()
             .anyRequest().authenticated() // 위의 설정을 제외하고는 권한을 필요로 함
         );
