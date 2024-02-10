@@ -3,7 +3,11 @@ package com.totalhubsite.backend.domain.board.service;
 import com.totalhubsite.backend.domain.board.dto.request.CommentRequestDto;
 import com.totalhubsite.backend.domain.board.dto.response.CommentDetailResponseDto;
 import com.totalhubsite.backend.domain.board.entity.Comment;
+import com.totalhubsite.backend.domain.board.entity.Post;
 import com.totalhubsite.backend.domain.board.repository.CommentRepository;
+import com.totalhubsite.backend.domain.board.repository.PostRepository;
+import com.totalhubsite.backend.domain.member.exception.PermissionDeniedException;
+import com.totalhubsite.backend.global.security.dto.PrincipalDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,12 +16,17 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class CommentServiceImpl implements CommentService{
 
+    private final PostRepository postRepository;
     private final CommentRepository commentRepository;
 
     @Override @Transactional
-    public CommentDetailResponseDto addComment(CommentRequestDto requestDto) {
+    public CommentDetailResponseDto addComment(PrincipalDetails principalDetails, Long postId, CommentRequestDto requestDto) {
 
-        Comment requestComment = requestDto.toEntity();
+        if(principalDetails == null) { throw new PermissionDeniedException(); }
+
+        Post findPost = postRepository.findById(postId).orElseThrow(); // TODO: 예외처리
+
+        Comment requestComment = requestDto.toEntity(principalDetails.getMember(), findPost);
         Comment savedComment = commentRepository.save(requestComment);
         CommentDetailResponseDto responseDto = CommentDetailResponseDto.fromEntity(savedComment);
 
@@ -34,8 +43,14 @@ public class CommentServiceImpl implements CommentService{
     }
 
     @Override @Transactional
-    public CommentDetailResponseDto modifyComment(Long commentId, CommentRequestDto requestDto) {
+    public CommentDetailResponseDto modifyComment(PrincipalDetails principalDetails, Long commentId, CommentRequestDto requestDto) {
+
         Comment findComment = findCommentById(commentId);
+
+        if(principalDetails == null || !findComment.getMember().equals(principalDetails.getMember())) {
+            throw new PermissionDeniedException();
+        }
+
         findComment.update(requestDto);
         CommentDetailResponseDto responseDto = CommentDetailResponseDto.fromEntity(findComment);
 
@@ -43,8 +58,13 @@ public class CommentServiceImpl implements CommentService{
     }
 
     @Override @Transactional
-    public void removeComment(Long commentId) {
+    public void removeComment(PrincipalDetails principalDetails, Long commentId) {
         Comment findComment = findCommentById(commentId);
+
+        if(principalDetails == null || !findComment.getMember().equals(principalDetails.getMember())) {
+            throw new PermissionDeniedException();
+        }
+
         commentRepository.delete(findComment);
     }
 
