@@ -9,7 +9,6 @@ import com.totalhubsite.backend.domain.board.repository.BoardRepository;
 import com.totalhubsite.backend.domain.member.entity.Member;
 import com.totalhubsite.backend.domain.member.exception.PermissionDeniedException;
 import com.totalhubsite.backend.global.security.dto.PrincipalDetails;
-import java.nio.BufferOverflowException;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

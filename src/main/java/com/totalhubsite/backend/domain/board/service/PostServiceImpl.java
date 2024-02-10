@@ -1,20 +1,15 @@
 package com.totalhubsite.backend.domain.board.service;
 
 import com.totalhubsite.backend.domain.board.dto.request.PostRequestDto;
-import com.totalhubsite.backend.domain.board.dto.response.CommentDetailResponseDto;
 import com.totalhubsite.backend.domain.board.dto.response.PostDetailResponseDto;
 import com.totalhubsite.backend.domain.board.dto.response.PostListResponseDto;
 import com.totalhubsite.backend.domain.board.entity.Board;
-import com.totalhubsite.backend.domain.board.entity.Comment;
 import com.totalhubsite.backend.domain.board.entity.Post;
 import com.totalhubsite.backend.domain.board.exception.BoardNotFoundException;
 import com.totalhubsite.backend.domain.board.repository.BoardRepository;
 import com.totalhubsite.backend.domain.board.repository.PostRepository;
-import com.totalhubsite.backend.domain.member.entity.Member;
 import com.totalhubsite.backend.domain.member.exception.PermissionDeniedException;
 import com.totalhubsite.backend.global.security.dto.PrincipalDetails;
-import java.util.ArrayList;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

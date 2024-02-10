@@ -2,7 +2,6 @@ package com.totalhubsite.backend.domain.board.dto.request;
 
 import com.totalhubsite.backend.domain.board.entity.Board;
 import com.totalhubsite.backend.domain.board.entity.Post;
-import com.totalhubsite.backend.domain.member.dto.response.MemberInfoResponseDto;
 import com.totalhubsite.backend.domain.member.entity.Member;
 import lombok.Builder;
 
