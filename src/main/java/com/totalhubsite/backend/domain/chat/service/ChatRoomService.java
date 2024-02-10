@@ -22,7 +22,7 @@ public class ChatRoomService {
     private final RabbitAdmin rabbitAdmin; // RabbitMQ admin
     private final ChatRoomRepository chatRoomRepository;
 
-    @Value("${spring.host_profile}")
+    @Value("${docker.host_profile}")
     private String hostProfile;
 
     public ChatRoom addChatRoom(ChatRoomRequestDto request) {

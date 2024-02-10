@@ -15,7 +15,7 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @Slf4j
 public class StompConfig implements WebSocketMessageBrokerConfigurer {
 
-    @Value("${spring.host_profile}")
+    @Value("${docker.host_profile}")
     private String hostProfile;
 
     // WebSocket 설정

@@ -6,11 +6,19 @@ spring:
     url: jdbc:mysql://localhost:3310/totalhubsite
     username: root
     password: root
-
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create
     show-sql: true
     defer-datasource-initialization: true
+    properties:
+      hibernate.format_sql: true
+  sql.init.mode: always
+  security:
+    jwt_key:
+      jwt_secret_key1: ${JWT_SECRET_KEY1}
+      jwt_secret_key2: ${JWT_SECRET_KEY2}
+      jwt_secret_key3: ${JWT_SECRET_KEY3}
 
+docker:
   host_profile: localhost
