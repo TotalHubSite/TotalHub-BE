@@ -4,7 +4,11 @@ import com.totalhubsite.backend.domain.board.dto.request.BoardRequestDto;
 import com.totalhubsite.backend.domain.board.dto.response.BoardDetailResponseDto;
 import com.totalhubsite.backend.domain.board.dto.response.BoardListResponseDto;
 import com.totalhubsite.backend.domain.board.entity.Board;
+import com.totalhubsite.backend.domain.board.exception.BoardNotFoundException;
 import com.totalhubsite.backend.domain.board.repository.BoardRepository;
+import com.totalhubsite.backend.domain.member.entity.Member;
+import com.totalhubsite.backend.domain.member.exception.PermissionDeniedException;
+import com.totalhubsite.backend.global.security.dto.PrincipalDetails;
 import java.nio.BufferOverflowException;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -21,9 +25,13 @@ public class BoardServiceImpl implements BoardService{
     private final BoardRepository boardRepository;
 
     @Override @Transactional
-    public BoardDetailResponseDto addBoard(BoardRequestDto requestDto) {
+    public BoardDetailResponseDto addBoard(PrincipalDetails principalDetails, BoardRequestDto requestDto) {
 
-        Board requestBoard = requestDto.toEntity();
+        if(principalDetails == null) { throw new PermissionDeniedException(); }
+
+        Member member = principalDetails.getMember();
+
+        Board requestBoard = requestDto.toEntity(member);
         Board savedBoard = boardRepository.save(requestBoard);
         BoardDetailResponseDto responseDto = BoardDetailResponseDto.fromEntity(savedBoard);
 
@@ -51,9 +59,14 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override @Transactional
-    public BoardDetailResponseDto modifyBoard(Long boardId, BoardRequestDto requestDto) {
+    public BoardDetailResponseDto modifyBoard(PrincipalDetails principalDetails, Long boardId, BoardRequestDto requestDto) {
 
         Board findBoard = findBoardById(boardId);
+
+        if(principalDetails == null || !findBoard.getMember().equals(principalDetails.getMember())) {
+            throw new PermissionDeniedException();
+        }
+
         findBoard.update(requestDto);
         BoardDetailResponseDto responseDto = BoardDetailResponseDto.fromEntity(findBoard);
 
@@ -61,14 +74,19 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override @Transactional
-    public void removeBoard(Long boardId) {
+    public void removeBoard(PrincipalDetails principalDetails, Long boardId) {
         Board findBoard = findBoardById(boardId);
+
+        if(principalDetails == null || !findBoard.getMember().equals(principalDetails.getMember())) {
+            throw new PermissionDeniedException();
+        }
+
         boardRepository.delete(findBoard);
     }
 
     private Board findBoardById(Long boardId) {
         Board findBoard = boardRepository.findById(boardId)
-                    .orElseThrow(BufferOverflowException::new);
+                    .orElseThrow(BoardNotFoundException::new);
 
         return findBoard;
     }
