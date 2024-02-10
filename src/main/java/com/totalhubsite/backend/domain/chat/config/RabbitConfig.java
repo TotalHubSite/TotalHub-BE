@@ -24,7 +24,7 @@ import org.springframework.messaging.handler.annotation.support.DefaultMessageHa
 @EnableRabbit // RabbitMQ를 사용하기 위해 필요한 설정을 활성화
 public class RabbitConfig implements RabbitListenerConfigurer {
 
-    @Value("${spring.host_profile}")
+    @Value("${docker.host_profile}")
     private String hostProfile;
 
     // AmqpAdmin 빈은 RabbitMQ의 관리 작업을 수행하며, RabbitTemplate 빈은 메시지를 전송하는데 사용된다.

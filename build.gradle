@@ -29,8 +29,13 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 
 	// security
-//	implementation 'org.springframework.boot:spring-boot-starter-security'
-//	testImplementation 'org.springframework.security:spring-security-test'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	testImplementation 'org.springframework.security:spring-security-test'
+
+	// jjwt
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2'
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.2'
 
 	// db
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -49,6 +54,8 @@ dependencies {
 	testImplementation 'io.projectreactor:reactor-test'
 //	implementation 'org.springframework.boot:spring-boot-starter-reactor-netty'
 
+	// dotenv-java
+	implementation 'io.github.cdimascio:java-dotenv:+'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
