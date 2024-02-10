@@ -3,6 +3,7 @@ package com.totalhubsite.backend.global.security.jwt;
 import io.jsonwebtoken.security.Keys;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
+import java.util.Base64;
 import java.util.Map;
 import java.util.Random;
 import org.springframework.data.util.Pair;
@@ -31,7 +32,9 @@ public class JwtKey {
         String secretKey = SECRET_KEY_SET.get(kid);
         // Keys.hmacShaKeyFor 메소드는 주어진 비밀키를 바탕으로 HMAC-SHA 알고리즘에 사용될 키를 생성
         // 키는 이미 Base64Url 인코딩 되어있음
-        return Pair.of(kid, Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8)));
+//        return Pair.of(kid, Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8)));
+        byte[] decodedKey = Base64.getUrlDecoder().decode(secretKey);
+        return Pair.of(kid, Keys.hmacShaKeyFor(decodedKey));
     }
 
     // 키id를 통하여 키값 전달
