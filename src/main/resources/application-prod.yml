@@ -6,16 +6,18 @@ spring:
     url: jdbc:mysql://total-hub-site-mysql.ct2aoqa2kuhu.ap-northeast-2.rds.amazonaws.com:3306/totalhubsite
     username: ${SPRING_DATABASE_USERNAME}
     password: ${SPRING_DATABASE_PASSWORD}
-  h2:
-    console:
-      enabled: true
   jpa:
     hibernate:
       ddl-auto: create-drop
     show-sql: true
-    generate-ddl: true
     defer-datasource-initialization: true
+    properties:
+      hibernate.format_sql: true
+  security:
+    jwt_key:
+      jwt_secret_key1: ${JWT_SECRET_KEY1}
+      jwt_secret_key2: ${JWT_SECRET_KEY2}
+      jwt_secret_key3: ${JWT_SECRET_KEY3}
 
+docker:
   host_profile: docker-compose_rabbitmq_1
-
-
