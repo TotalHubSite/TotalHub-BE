@@ -9,17 +9,20 @@ public record BoardDetailResponseDto(
     Long id,
     String name,
     String description,
+    Long boardCount,
+    Long commentCount,
     MemberInfoResponseDto member
 
 ) {
 
     @Builder
-
-    public BoardDetailResponseDto(Long id, String name, String description,
-        MemberInfoResponseDto member) {
+    public BoardDetailResponseDto(Long id, String name, String description, Long boardCount,
+        Long commentCount, MemberInfoResponseDto member) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.boardCount = boardCount;
+        this.commentCount = commentCount;
         this.member = member;
     }
 
@@ -31,6 +34,20 @@ public record BoardDetailResponseDto(
             .id(entity.getId())
             .name(entity.getName())
             .description(entity.getDescription())
+            .member(memberInfo)
+            .build();
+    }
+
+    public static BoardDetailResponseDto fromEntity(Board entity, Long boardCount, Long commentCount) {
+        Member findMember = entity.getMember();
+        MemberInfoResponseDto memberInfo = MemberInfoResponseDto.fromEntity(findMember);
+
+        return BoardDetailResponseDto.builder()
+            .id(entity.getId())
+            .name(entity.getName())
+            .description(entity.getDescription())
+            .boardCount(boardCount)
+            .commentCount(commentCount)
             .member(memberInfo)
             .build();
     }

@@ -5,7 +5,7 @@ import com.totalhubsite.backend.domain.board.dto.response.BoardDetailResponseDto
 import com.totalhubsite.backend.domain.board.dto.response.BoardListResponseDto;
 import com.totalhubsite.backend.domain.board.entity.Board;
 import com.totalhubsite.backend.domain.board.exception.BoardNotFoundException;
-import com.totalhubsite.backend.domain.board.repository.BoardRepository;
+import com.totalhubsite.backend.domain.board.repository.board.BoardRepository;
 import com.totalhubsite.backend.domain.member.entity.Member;
 import com.totalhubsite.backend.domain.member.exception.PermissionDeniedException;
 import com.totalhubsite.backend.global.security.dto.PrincipalDetails;
@@ -40,9 +40,11 @@ public class BoardServiceImpl implements BoardService{
     @Override @Transactional(readOnly = true)
     public BoardDetailResponseDto findBoard(Long boardId) {
 
-        Board findBoard = findBoardById(boardId);
+//        Board findBoard = findBoardById(boardId);
 
-        BoardDetailResponseDto responseDto = BoardDetailResponseDto.fromEntity(findBoard);
+//        BoardDetailResponseDto responseDto = BoardDetailResponseDto.fromEntity(findBoard);
+
+        BoardDetailResponseDto responseDto = boardRepository.findBoardDetails(boardId);
 
         return responseDto;
     }
