@@ -6,7 +6,7 @@ import com.totalhubsite.backend.domain.board.dto.response.PostListResponseDto;
 import com.totalhubsite.backend.domain.board.entity.Board;
 import com.totalhubsite.backend.domain.board.entity.Post;
 import com.totalhubsite.backend.domain.board.exception.BoardNotFoundException;
-import com.totalhubsite.backend.domain.board.repository.BoardRepository;
+import com.totalhubsite.backend.domain.board.repository.board.BoardRepository;
 import com.totalhubsite.backend.domain.board.repository.PostRepository;
 import com.totalhubsite.backend.domain.member.exception.PermissionDeniedException;
 import com.totalhubsite.backend.global.security.dto.PrincipalDetails;
