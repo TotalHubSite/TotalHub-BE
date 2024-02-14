@@ -43,7 +43,8 @@ public class PostServiceImpl implements PostService{
     @Override @Transactional(readOnly = true)
     public PostDetailResponseDto findPost(Long postId) {
 
-        Post findPost = findPostById(postId);
+//        Post findPost = findPostById(postId);
+        Post findPost = postRepository.findWithCommentsById(postId).orElseThrow();
 
         PostDetailResponseDto responseDto = PostDetailResponseDto.fromEntity(findPost);
 
