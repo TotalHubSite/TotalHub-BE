@@ -25,23 +25,6 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
         QPost qPost = QPost.post;
         QComment qComment = QComment.comment;
 
-        // 각 정보에 대한 요청
-//        Board board = queryFactory.selectFrom(qBoard)
-//            .where(qBoard.id.eq(boardId))
-//            .fetchOne();
-//
-//        Long postCount = queryFactory.select(qPost.count())
-//            .from(qPost)
-//            .where(qPost.board.id.eq(boardId))
-//            .fetchOne();
-//
-//        Long commentCount = queryFactory.select(qComment.count())
-//            .from(qComment)
-//            .where(qComment.post.board.id.eq(boardId))
-//            .fetchOne();
-//
-//        BoardDetailResponseDto responseDto = BoardDetailResponseDto.fromEntity(board, postCount, commentCount);
-
         // 한번의 요청으로 처리
         BoardDetailResponseDto responseDto  = queryFactory
             .select(Projections.constructor(BoardDetailResponseDto.class,

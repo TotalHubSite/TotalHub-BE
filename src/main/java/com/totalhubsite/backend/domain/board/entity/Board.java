@@ -32,6 +32,9 @@ public class Board {
     @Column(length = 1000)
     private String description;
 
+    private Integer postCount;
+    private Integer commentCount;
+
     @ManyToOne
     @JoinColumn(name="member_id")
     private Member member;
@@ -50,6 +53,22 @@ public class Board {
     public void update(BoardRequestDto requestDto) {
         this.name = requestDto.name();
         this.description = requestDto.description();
+    }
+
+    public void postCountPlus() {
+        this.postCount = this.postCount + 1;
+    }
+
+    public void postCountMinus() {
+        this.postCount = this.postCount - 1;
+    }
+
+    public void commentCountPlus() {
+        this.commentCount = this.commentCount + 1;
+    }
+
+    public void commentCountMinus() {
+        this.commentCount = this.commentCount - 1;
     }
 
     @Override

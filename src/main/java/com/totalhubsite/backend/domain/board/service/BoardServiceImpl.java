@@ -40,11 +40,11 @@ public class BoardServiceImpl implements BoardService{
     @Override @Transactional(readOnly = true)
     public BoardDetailResponseDto findBoard(Long boardId) {
 
-//        Board findBoard = findBoardById(boardId);
+//        BoardDetailResponseDto responseDto = boardRepository.findBoardDetails(boardId);
 
-//        BoardDetailResponseDto responseDto = BoardDetailResponseDto.fromEntity(findBoard);
+        Board findBoard = boardRepository.findById(boardId).orElseThrow();
 
-        BoardDetailResponseDto responseDto = boardRepository.findBoardDetails(boardId);
+        BoardDetailResponseDto responseDto = BoardDetailResponseDto.fromEntity(findBoard);
 
         return responseDto;
     }
