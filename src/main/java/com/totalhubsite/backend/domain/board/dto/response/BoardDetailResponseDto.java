@@ -9,15 +9,15 @@ public record BoardDetailResponseDto(
     Long id,
     String name,
     String description,
-    Integer postCount,
-    Integer commentCount,
+    Long postCount,
+    Long commentCount,
     MemberInfoResponseDto member
 
 ) {
 
     @Builder
-    public BoardDetailResponseDto(Long id, String name, String description, Integer postCount,
-        Integer commentCount, MemberInfoResponseDto member) {
+    public BoardDetailResponseDto(Long id, String name, String description, Long postCount,
+        Long commentCount, MemberInfoResponseDto member) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -40,7 +40,7 @@ public record BoardDetailResponseDto(
             .build();
     }
 
-    public static BoardDetailResponseDto fromEntity(Board entity, Integer postCount, Integer commentCount) {
+    public static BoardDetailResponseDto fromEntity(Board entity, Long postCount, Long commentCount) {
         Member findMember = entity.getMember();
         MemberInfoResponseDto memberInfo = MemberInfoResponseDto.fromEntity(findMember);
 

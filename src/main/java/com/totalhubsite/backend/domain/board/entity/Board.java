@@ -32,8 +32,8 @@ public class Board {
     @Column(length = 1000)
     private String description;
 
-    private Integer postCount;
-    private Integer commentCount;
+    private Long postCount;
+    private Long commentCount;
 
     @ManyToOne
     @JoinColumn(name="member_id")

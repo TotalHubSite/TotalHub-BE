@@ -9,15 +9,19 @@ public record BoardListResponseDto(
     Long id,
     String name,
     String description,
+    Long postCount,
+    Long commentCount,
     MemberInfoResponseDto member
 ) {
 
     @Builder
-    public BoardListResponseDto(Long id, String name, String description,
-        MemberInfoResponseDto member) {
+    public BoardListResponseDto(Long id, String name, String description, Long postCount,
+        Long commentCount, MemberInfoResponseDto member) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.postCount = postCount;
+        this.commentCount = commentCount;
         this.member = member;
     }
 
