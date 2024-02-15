@@ -52,11 +52,11 @@ public class BoardServiceImpl implements BoardService{
     @Override @Transactional(readOnly = true)
     public Page<BoardListResponseDto> findBoardList(Pageable pageable) {
 
-//        Page<Board> findBoards = boardRepository.findAll(pageable);
-//
-//        Page<BoardListResponseDto> responseDtos = findBoards.map(BoardListResponseDto::fromEntity);
+        Page<Board> findBoards = boardRepository.findAll(pageable);
 
-        Page<BoardListResponseDto> responseDtos = boardRepository.findBoardList(pageable);
+        Page<BoardListResponseDto> responseDtos = findBoards.map(BoardListResponseDto::fromEntity);
+
+//        Page<BoardListResponseDto> responseDtos = boardRepository.findBoardList(pageable);
 
         return responseDtos;
     }
