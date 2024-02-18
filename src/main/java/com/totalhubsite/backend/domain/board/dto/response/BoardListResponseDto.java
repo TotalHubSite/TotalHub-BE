@@ -32,6 +32,8 @@ public record BoardListResponseDto(
             .id(entity.getId())
             .name(entity.getName())
             .description(entity.getDescription())
+            .postCount(entity.getPostCount())
+            .commentCount(entity.getCommentCount())
             .member(memberInfo)
             .build();
     }
